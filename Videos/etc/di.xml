@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © SJI, Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="VideosGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Sjinnovation\Videos\Model\ResourceModel\Videos\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">VideosGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CategoriesGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Sjinnovation\Videos\Model\ResourceModel\Categories\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CategoriesGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="VideosGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CategoriesGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="videos_listvideos_listing_data_source" xsi:type="string">Sjinnovation\Videos\Model\ResourceModel\Videos\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Sjinnovation\Videos\Model\ResourceModel\Videos\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">prt_videos</argument>
+            <argument name="resourceModel" xsi:type="string">Sjinnovation\Videos\Model\ResourceModel\Videos</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="categories_listcategories_listing_data_source" xsi:type="string">Sjinnovation\Videos\Model\ResourceModel\Categories\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Sjinnovation\Videos\Model\ResourceModel\Categories\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">prt_video_categories</argument>
+            <argument name="resourceModel" xsi:type="string">Sjinnovation\Videos\Model\ResourceModel\Categories</argument>
+        </arguments>
+    </virtualType>
+</config>

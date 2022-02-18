@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Magento\Catalog\Api\ProductRepositoryInterface" type="Certification\Learning\Model\CustomImplementation" />
+
+    <preference for="Certification\Learning\Api\PencilInterface"
+                type="Certification\Learning\Model\Pencil" />
+
+    <preference for="Certification\Learning\Api\Color" type="Certification\Learning\Model\Yellow" />
+
+    <preference for ="Certification\Learning\Api\Size" type="Certification\Learning\Model\Normal"/>
+
+    <preference for ="Certification\Learning\Api\Brightness" type="Certification\Learning\Model\Medium"/>
+
+    
+
+    <virtualType name="virtualType" type="Certification\Learning\Model\Red">
+        <arguments>
+            <argument name="brightness" xsi:type="object">Certification\Learning\Model\High
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Certification\Learning\Model\Pencil">
+        <arguments>
+            <argument name="color" xsi:type="object">Certification\Learning\Model\Yellow</argument>
+            <argument name="size" xsi:type="object">Certification\Learning\Model\Big</argument>
+        </arguments>
+    </type>
+
+     <type name="Certification\Learning\Model\Student">
+        <arguments>
+            <argument name="name" xsi:type="string">Bob</argument>
+            <argument name="age" xsi:type="number">35</argument>
+            <argument name="scores" xsi:type="array">
+                <item name="maths" xsi:type="number">100</item>
+                <item name="Programming" xsi:type="number">99</item>
+            </argument>
+        </arguments>
+    </type>
+
+ <!--   <type name="Magento\Catalog\Model\Product">
+        <plugin name="before_set_name" type ="Certification\Learning\Plugin\PluginSolution" sortOrder="10" /> 
+    </type> -->
+    <type name="Certification\Learning\Controller\Page\HelloWorld">
+        <plugin name="plugin_on_execute" type ="Certification\Learning\Plugin\PluginSolution" sortOrder="10" disabled="true" /> 
+        <plugin name="plugin2_on_execute" type ="Certification\Learning\Plugin\PluginSolution2" sortOrder="20" disabled="true"/> 
+        <plugin name="plugin3_on_execute" type ="Certification\Learning\Plugin\PluginSolution3" sortOrder="30" disabled="true"/> 
+         <arguments>
+            <argument name="heavyService" xsi:type="object">Certification\Learning\Model\HeavyService\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="hello_world" xsi:type="object">Certification\Learning\Console\Command\HelloWorld</item>
+            </argument>
+        </arguments>
+    </type> 
+
+</config>

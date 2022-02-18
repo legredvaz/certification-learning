@@ -1,0 +1,90 @@
+<?php
+
+$categories = $block->getCategoryCollection();
+
+/*foreach ($videos as $video) {
+	echo $video['video_id'];
+	echo $video['title'];
+	echo $video['sub_title'];
+	echo $video['url'];
+	echo $video['banner_url'];
+} */
+
+?>
+
+<div class="custom-product-tabs">
+	<div class="fs-tta">
+		<ul class="tab-bar tbl-hide">
+			<li><a class="tab pointer active" data-section="all" data-tab="1">All</a></li>
+			<?php 
+			$i = 2;
+				foreach ($categories as $cat) {
+			?>
+			<li><a class="tab pointer" data-section="<?= $cat['name'] ?>" data-tab="<?= $i ?>"><?= $cat['name'] ?></a></li>
+
+			<?php 
+			$i++;
+			}
+			?>
+		</ul>
+
+		<div class="tab-bodies">
+			<div id="all" class="tab-body active" data-tab="1">
+				<div class="row">
+					<?php 
+					$videos = $block->getAllCategoriesVideos();
+						foreach ($videos as $video) {
+					?>
+					<div class="column-30">
+						<div class="inner">
+							<a class="image-wrap popup-youtube" href="<?= $video['url'] ?>"> 
+								<img style="display: inline-block;" src="<?= $video['banner_url'] ?>" alt="<?= $video['title'] ?>">
+							</a>
+							<div class="details">
+								<a class="title youtube" href="<?= $video['url'] ?>"><?= $video['title'] ?></a>
+								<div class="subtitle"><?= $video['sub_title'] ?></div>
+								<a class="watch youtube" href="<?= $video['url'] ?>">Watch Video</a>
+							</div>
+						</div>
+					</div>
+
+					<?php 
+				}
+				?>
+			</div>
+		</div>
+			<?php  
+			$i = 2;
+				foreach ($categories as $cat) {
+			?>
+			<div id="<?= $cat['name'] ?>" class="tab-body" data-tab="<?= $i ?>">
+				<div class="row">
+					<?php 
+					$videos = $block->getVideosByCategory($cat['category_id'] );
+						foreach ($videos as $video) {
+					?>
+					<div class="column-30">
+						<div class="inner">
+							<a class="image-wrap popup-youtube" href="<?= $video['url'] ?>"> 
+								<img style="display: inline-block;" src="<?= $video['banner_url'] ?>" alt="<?= $video['title'] ?>">
+							</a>
+							<div class="details">
+								<a class="title youtube" href="<?= $video['url'] ?>"><?= $video['title'] ?></a>
+								<div class="subtitle"><?= $video['sub_title'] ?></div>
+								<a class="watch youtube" href="<?= $video['url'] ?>">Watch Video</a>
+							</div>
+						</div>
+					</div>
+
+					<?php 
+				}
+				?>
+			</div>
+		</div>
+	<?php 
+$i++;
+
+} ?>
+	</div>
+</div>
+</div>

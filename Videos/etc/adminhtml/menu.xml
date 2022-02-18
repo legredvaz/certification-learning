@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+     <add id="Sjinnovation_Videos::Videos" title="Videos" module="Sjinnovation_Videos" sortOrder="51" resource="Sjinnovation_Videos::Videos"/>
+        <add id="Sjinnovation_Videos::allvideos" title="Videos" module="Sjinnovation_Videos" sortOrder="10"  resource="Sjinnovation_Videos::allvideos" action="videos/listvideos/index" parent="Sjinnovation_Videos::Videos"/>
+        <add id="Sjinnovation_Videos::videocategories" title="Video Categories" module="Sjinnovation_Videos" sortOrder="20"  resource="Sjinnovation_Videos::videocategories" action="videos/listcategories/index" parent="Sjinnovation_Videos::Videos"/>
+    </menu>
+</config>
